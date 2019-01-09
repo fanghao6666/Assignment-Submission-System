@@ -19,14 +19,17 @@ Then open the browser and input:
 
 
 login student with
+
 	name: student@2
 	password: visg123456
 	
 login teacher with
+
 	name: teacher@2
 	password: visg123456
 	
 login Administrators with
+
 	name: visg
 	password: visg123456
 
