@@ -13,15 +13,19 @@ OK , then open the directory
 	cd AssignmentSubmission\assignment-submission-system
 	python manage.py runserver
 
+
 Then open the browser and input:
 	127.0.0.1:8000
+
 
 login student with
 	name: student@2
 	password: visg123456
+	
 login teacher with
 	name: teacher@2
 	password: visg123456
+	
 login Administrators with
 	name: visg
 	password: visg123456
