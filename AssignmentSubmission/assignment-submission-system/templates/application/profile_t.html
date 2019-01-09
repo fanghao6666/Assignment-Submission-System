@@ -1,0 +1,63 @@
+{% extends 'application/base_profile_t.html' %}
+
+{% block body %}
+
+
+<div class="container container-fluid">
+
+    <!-- Albums -->
+    {% if error_message %}
+      <div class="alert alert-danger">
+        <strong>{{ error_message }}</strong>
+      </div>
+    {% endif %}
+        <h3>{{ user.username }}'s Assignments</h3>
+        {% if asset %}
+
+              {% for assignments,dead,idx in asset %}
+                  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+    $("[id='{{ forloop.counter }}']").filter(".but").click(function () {
+        $("[id='{{ forloop.counter }}']").filter(".table").toggle(1000);
+    })
+});
+
+
+    </script>
+
+<div>
+<button class="but" id="{{ forloop.counter }}">{{ idx }} Batch</button>
+    <table class="table" id="{{ forloop.counter }}">
+          <thead>
+            <tr>
+              <th>Assignment</th>
+              <th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for assign in assignments %}
+
+
+                    <tr id="aaa">
+                  {% ifequal dead 1 %}
+                    <td><a href="{% url 'application:detail_t' assign.id %}">{{ assign.name }}</a></td>
+                      <td class="imp">{{ assign.deadline }}</td>
+                      {% else %}
+                    <td><a href="{% url 'application:detail_t' assign.id %}">{{ assign.name }}</a></td>
+                      <td class="imp"><font color="red"> {{ assign.deadline }}</font></td>
+                  {% endifequal %}
+
+
+                  </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+</div>
+            {% endfor %}
+        {% endif %}
+</div>
+
+{% endblock %}

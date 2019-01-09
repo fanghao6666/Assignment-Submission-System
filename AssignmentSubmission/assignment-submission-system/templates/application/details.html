@@ -1,0 +1,16 @@
+{% extends 'application/base_profile.html' %}
+{% block title %}{{ assignment }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h3>{{ assignment.name }}</h1>
+        <h5>Deadline: {{ assignment.deadline }}</h3>
+        <hr>
+        <h4>Questions:</h4>
+        <p>{{ assignment.questions }}</p>
+        <hr>
+        <button><a href="{% url 'application:submit' assignment.id %}">Add Your Submit</a></button>
+    </div>
+</div>
+{% endblock %}

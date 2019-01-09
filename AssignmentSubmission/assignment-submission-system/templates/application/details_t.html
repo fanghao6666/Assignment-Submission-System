@@ -1,0 +1,40 @@
+{% extends 'application/base_profile_t.html' %}
+{% block title %}{{ assignment }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h3>{{ assignment.name }}</h1>
+        <h5>Deadline: {{ assignment.deadline }}</h3>
+        <hr>
+        <h4>Questions:</h4>
+        <p>{{ assignment.questions }}</p>
+        <hr>
+    </div>
+</div>
+    <div class="container">
+
+     <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+                <th>SubDate</th>
+              <th>Author</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if sol_set %}
+            {% for sol in sol_set %}
+                  <tr>
+                    <td><a href="{% url 'application:sol_detail_t' sol_id=sol.id %}">{{ sol.title }}</a></td>
+                    <td>{{ sol.submission_date }}</td>
+
+                    <td>{{ sol.student.user.username }}</td>
+                  </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+
+    </div>
+{% endblock %}

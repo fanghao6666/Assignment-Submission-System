@@ -1,0 +1,13 @@
+{% extends 'application/base.html' %}
+{% block title %}Home{% endblock %}
+{% block index_active %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+{% for course in course_list %}
+    <a class="btn btn-info" href="{% url 'application:profile' course=course %}">{{ course }}</a>
+{% endfor %}
+
+</div>
+
+{% endblock %}

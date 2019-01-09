@@ -1,0 +1,62 @@
+{% extends 'application/base.html' %}
+{% block title %}Register{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Register for an Account</h3>
+                    {% if error_message %}
+                      <div class="alert alert-danger">
+                        <strong>{{ error_message }}</strong>
+                      </div>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in pform %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ field.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">{{ field }}</div>
+                                {% if field.help_text %}
+                                    <small style="color: grey">{{ field.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        {% for field in uform %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ field.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">{{ field }}</div>
+                                {% if field.help_text %}
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-info small">* {{ field.help_text }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    Already have an account? <a href="{% url 'application:index' %}">Click here</a> to log in.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

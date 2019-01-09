@@ -1,0 +1,70 @@
+{% extends 'application/base.html' %}
+{% block title %}{{ sol.tiitle }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <h3>{{ sol.title }}</h3>
+        <br>
+        <div>
+        <textarea rows="20" cols="60">{{ sol.body }}</textarea>
+        </div>
+        <br>
+        <div><b>Points:</b>    {{ sol.points }}</div>
+        <br>
+        <div><b>Comments:</b>    {{ sol.comments }}</div>
+        <br>
+        <div><b>Ansered by {{ sol.student.user.username }}</b></div>
+        <br>
+    </div>
+</div>
+
+ <div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    {% if error_message %}
+                      <div class="alert alert-danger">
+                        <strong>{{ error_message }}</strong>
+                      </div>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="{% url 'application:sol_detail_t' sol_id=sol.id%}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_points">
+                                Points:
+                            </label>
+                            <div class="col-sm-10">
+                                <input id="id_points" maxlength="30" name="points" type="text">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_comment">
+                                Comments:
+                            </label>
+                            <div class="col-sm-10">
+                                <input id="id_comment" maxlength="30" name="comments" type="text"></input>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
